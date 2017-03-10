@@ -2,11 +2,13 @@
   "name": "complete-intro-to-react",
   "version": "1.0.0",
   "description": "A two day workshop on a complete intro to React",
-  "main": "index.js",
+  "main": "app://whatever/index.html",
   "author": "Brian Holt <btholt@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "lint": "standard"
+    "lint": "standard",
+    "build": "webpack",
+    "watch": "npm run build -- --watch"
   },
   "dependencies": {
     "axios": "^0.15.3",
