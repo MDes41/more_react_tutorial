@@ -5,11 +5,17 @@ import ShowCard from './ShowCard'
 const Search = React.createClass({
   getInitialState () {
     return {
-      searchTerm: 'this is the default string'
+      searchTerm: ''
     }
   },
   handleSearchTermChange (event) {
     this.setState({searchTerm: event.target.value})
+  },
+  filterOut (show) {
+   return (
+      `${show.title} ${show.description}`
+      .toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
+    )
   },
   render () {
     return (
@@ -22,12 +28,7 @@ const Search = React.createClass({
         </header>
         <div>
           {preload.shows
-            .filter((show) => {
-              return (
-                `${show.title} ${show.description}`
-                .toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
-              )
-            })
+            .filter(this.filterOut)
             .map((show) => {
               return (
                 <ShowCard key={show.imdbID} {...show} />
